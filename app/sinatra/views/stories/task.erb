@@ -1,0 +1,60 @@
+<div id="element_<%=task['id']%>_move" class="draggable">
+  <div id="task_revisions_<%=task['id']%>"></div>
+ <% if @can_edit %>
+  <div id="element_<%=task['id']%>_edit" class="element indexcard<%= task_colors(task) %>" style="display:none;"></div>
+ <% end %>
+  <div id="element_<%=task['id']%>" class="indexcard<%= task_colors(task) %>">
+    <div class="clearTask">
+      <div class="hoursRemaining">
+        <%= task_hours(task) %>
+      </div>
+      <div class="moveTask">
+       <% if @can_edit %>
+        <img alt="Move" id="move_<%=task['id']%>" src="/images/move.gif" style="padding-right: 10px;" />
+       <% end %>
+      </div>
+      <div id="deleteTask">
+       <% if @can_edit %>
+        <a href="#element_<%= task['id'] %>" onclick="javascript:app.runRoute('get', '#/stories/<%=task.parent_id%>/tasks/<%=task.id%>/edit');">
+          edit
+        </a> |
+       <% end %>
+        <a href="#/task/<%= task.change_doc_id%>/history">history</a>
+      </div>
+    </div>
+    <div class="indexcardContent <%= task['status_id'] %>">
+      <div id="avatar">
+        <% unless task['users'].empty?
+          users = User.find(task['users'].map(&:id))
+          assigned_list = users.map(&:full_name).join(", ")
+          img_src = task['users'].count > 1 ? MULTI_AVATAR : users[0].avatar %>
+          <img src="<%=img_src%>" title="<%=assigned_list%>" alt="<%=assigned_list%>"
+               height='25' width='25' id="avatar_<%=task['id']%>" />
+          <p style='display:none'><%=assigned_list%></p>
+        <% end %>
+      </div>
+      <%= textilize(task['title'])%>
+      <%= textilize(h(task['description'])) unless task['description'].blank? %>
+      <% unless task['tag_list'].blank? %>
+        <p class="tags">
+          Tags: <%= h(task['tag_list'])%>
+        </p>
+      <% end %>
+    </div>
+    <div id="moveBTNs">
+     <% if @can_edit %>
+      <small>
+        <% unless task['status_id'] == STATUS_TODO %>
+          <a onclick="javascript:app.runRoute('put', '#/stories/<%=task.parent_id%>/tasks/<%=task.id%>',
+             {'element[status_id]': <%= task['status_id'] - 1%> })" href="#/" >←</a>
+        <% end %>
+        <% unless task['status_id'] == STATUS_DONE %>
+          <a onclick="javascript:app.runRoute('put', '#/stories/<%=task.parent_id%>/tasks/<%=task.id%>',
+               {'element[status_id]': <%= task['status_id'] + 1%> })" href="#/">→</a>
+        <% end %>
+       <% end %>
+      </small>
+    </div>
+  </div>
+  <div class="cardFooter"></div>
+</div>

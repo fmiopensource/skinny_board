@@ -1,0 +1,21 @@
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', :lang => 'en' }
+  %head
+    %meta{ 'http-equiv' => 'content-type', :content => 'text/html;charset=UTF-8' }
+    %title 
+      = @board.title
+    = stylesheet_link_tag 'skinnyboard'
+    = javascript_include_tag :defaults#, :cache => true
+    
+    = javascript_include_tag 'effects'
+    %link{ :href => '/images/apple-touch-icon.png', :rel => 'apple-touch-icon' }
+    %link{ :href => '/images/favicon.ico', :rel => 'shortcut icon' }
+    
+  %body
+    %div{ :id => 'loading', :style => 'display: none;' }
+      %img{ :src => '/images/loading.gif' }
+    #appBoardWrapper
+      #appHeaderWrapper
+        #flash_notice=flash[:notice]
+        #flash_error=flash[:error]
+      = yield

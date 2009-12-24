@@ -1,0 +1,49 @@
+<h2>
+  Edit Your Board
+</h2>
+<div id="contentAreaMid">
+  <h4>
+    Required fields marked with *
+  </h4>
+  <form method="post" id="edit_element_<%=@board.id%>" class="edit_element" action="/boards/<%=@board.id%>">
+    <%= partial :"boards/board_form", :locals => { :board => @board, :mode => :edit } %>
+    <div class="multiLinks">
+      <div class="buttonLink">
+        <input type="submit" value="Save" name="commit" id="element_submit"/>
+      </div>
+      <div class="buttonLink">
+        <%= link_back_or_default "Cancel" %>
+      </div>
+    </div>
+  </form>
+</div>
+<br/><br/><br/>
+<div id="access_to_board">
+  <h2>
+    Modify Permissions for <%=@board.title%>
+  </h2>
+  <div id="contentAreaTop"></div>
+  <div id="contentAreaMid">
+    <div id="board_users">
+      <h3>Users with access to this board</h3>
+      <ul id="available_users">
+        <li id="user_<%=@owner.id%>">
+          <div class="name"><%=@owner.name%></div>
+        </li>
+        <%= board_users_helper(@board.users, "Remove from Board"){ |user|
+          "javascript:app.runRoute('delete', '#/users/#{user.id}');"
+        }%>
+      </ul>
+    </div>
+    <br/>
+    <br/>
+    <div id="company_users">
+      <h3>Users available</h3>
+      <ul id="no_access_users">
+        <%= board_users_helper(@available_users, "Add to Board"){ |user|
+          "javascript:app.runRoute('put', '#/users/#{user.id}')"
+        }%>
+      </ul>
+    </div>
+  </div>
+</div>

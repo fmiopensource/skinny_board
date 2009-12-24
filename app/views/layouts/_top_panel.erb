@@ -1,0 +1,76 @@
+<!-- Panel -->
+<div id="toppanel">
+  <div id="panel" style="display: none;">
+    <div class="content clearfix">
+      <div class="left">
+      </div>
+      <div class="right">
+        <% if show_filters %>
+          <% if show_page %>
+            <div id="filters">
+              <div class="filtersName">
+                Filter by Keyword:
+              </div>
+              <div class="filtersField">
+                <input type="text" value="<%= @text_filter %>" name="story_filter" id="story_filter"/>
+                <a onclick="$('story_filter').value = ''; storyFilter();" id="clear_filter">clear</a>
+              </div>
+            </div>
+          <% else %>
+            <div id="filtersBoards">
+              <div class="filtersName">
+                Filter by Keyword:
+              </div>
+              <div class="filtersField">
+                <input type="text" name="board_filter" id="board_filter"/>
+                <a href="javascript: void(0);" id="clear_filter">clear</a>
+              </div>
+              <div class="filtersLinks">
+                <a class="editPrioritize" href="/boards/new">New Board</a>&nbsp;|&nbsp;
+                <%= show_boards_link %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div> <!-- /login -->
+
+  <!-- The tab on top -->
+  <div class="tab">
+    <ul class="login">
+      <li class="left">&nbsp;</li>
+      <li id="togglePanel">
+        <a id="open" class="open" href="#">More</a>
+        <a id="close" style="display: none;" class="close" href="#">Close Panel</a>
+      </li>
+      <li class="right">&nbsp;</li>
+    </ul>
+  </div> <!-- / top -->
+
+
+   <div id='topBoardNavigation'>
+    <div id='topBoardNavigation_subLeft'>
+     <% if logged_in? %>
+      <ul id="boardNav">
+        <li><a href="/boards" class="navItem">All Boards</a></li>
+        <li>|</li>
+        <li>
+          <%= render :partial => "layouts/recents" %>
+        </li>
+        <li>
+          <%= render :partial => "layouts/top_right_links" %>
+        </li>
+      </ul>
+     <% end %>
+    </div>
+    <div id='topBoardNavigation_subRight'>
+      <!-- Place skinnyBoard logo here -->
+      <a href='/'>
+        <img src='/images/skinnyLogoSML.png' alt="Skinnyboard" />
+      </a>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+</div> <!--panel -->

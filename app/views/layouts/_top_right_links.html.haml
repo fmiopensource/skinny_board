@@ -1,0 +1,11 @@
+
+#logoutBTN
+  - if logged_in?
+    =link_to h(current_user.first_name), edit_user_path(current_user)
+    |
+    =link_to 'users', users_path
+    |
+    = link_to 'log out', :controller => 'account', :action => 'logout'
+    |
+  %a{ :href => "http://forum.skinnyboard.com"}
+    help

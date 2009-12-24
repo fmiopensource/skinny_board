@@ -1,0 +1,86 @@
+h1. Skinny Board
+
+Skinnyboard helps agile project teams collaborate to get work done. It provides project boards of virtual index cards that you use to assign work, track status, and measure performance.
+
+Its written in Ruby and uses Rails, Sinatra, CouchDB, mysql, jQuery and Sammy.js in an unholy marriage of api, website, ajax, relational, and nosql, all in a rack stew.
+
+"Fluid Media, Inc.":http://www.fluidmedia.com offers it as a "hosted service":http://www.skinnyboard.com where you can "try it":https://www.skinnyboard.com/users/new?plan=4 for free
+
+We are pleased to offer the code up to the community.  We are hoping that people will use it, and help to make it better.
+
+h2. Using
+
+To run skinny board, you'll need to get the source and install the gems.
+
+You will also need a "CouchDB server":http://wiki.apache.org/couchdb/Installation running on http://localhost:5984.
+
+From the application root do the following:
+
+To set up CouchDB:
+* curl -X PUT http://localhost:5984/c1
+* rake couchdb:load_design_docs db=http://localhost:5984/c1
+
+To setup the db:
+* configure database.yml
+* rake db:migrate
+
+The app uses subdomain-fu so you need to add an entry to your /etc/hosts file:
+* 127.0.0.1 skinnyboard.local
+
+Run the app:
+* ruby config.ru
+* http://skinnyboard.local:3000/
+* click 'Sign Up' to create an account owner (you only need to do this once)
+
+*Stop the app* then run:
+* rake utils:subdomains
+
+This will add the correct domains to your etc/hosts file.
+
+Start the app again, and you can login with with account you created above.
+
+*Important* Only the account owner uses sign-up, all other users are invited into the system.
+
+Other things you'll need to set in the config:
+* set up your email server and uncomment notifier in UserObserver
+* set up your S3 bucket for user avatars
+* set up your re-capthcha keys
+
+h2. Testing
+
+If you want to run all the tests, you'll have to create another couchdb database:
+* curl -X PUT http://localhost:5984/stage
+* rake couchdb:load_design_docs db=http://localhost:5984/stage
+
+To run the tests:
+* rake spec=
+
+h2. Help Out
+
+There is still lots to be done and we'd love your help.  Please contribute patches (with tests),
+suggestions, criticisms.
+
+h2. MIT License
+
+Copyright (c) 2009 Fluid Media, Inc.
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.

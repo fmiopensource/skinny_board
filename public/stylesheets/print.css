@@ -1,0 +1,10 @@
+#appBoardScreen, .infoAreaText, #appBoardWrapper, #footer, #MB_close, .zoomRange, #filters, #menu, 
+#MB_caption a, #boards, #appBoardWrapper, #appScreenBoard, #containers, #contentAreaMid, #appBoardPadding
+{
+  display: none;
+}
+#MB_content, .MB_focusable img, #birds_eye_image
+{
+	display: block !important;
+	border: 0;
+}

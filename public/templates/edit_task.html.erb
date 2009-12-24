@@ -1,0 +1,99 @@
+<form action="<%=action%>" method="<%=method%>" id="new_element_<%=id%>" class="new_element" >
+  <div style="display: none;" id="elementLoadingImage">
+    <img height="25" width="25" src="/images/loading.gif" alt="Loading"/>
+  </div>
+  <input type="hidden" name="element[position]" id="element_position" value="<%= element.position %>" />
+  <input type="hidden" name="element[status_id]" id="element_status_id" value="<%= element.status_id %>" />
+  <div id="editForm">
+    <div class="clearTask"></div>
+    <p>
+      <label for="element_hours">Hours:</label>
+      <select name="element[hours]" id="element_hours">
+        <% $.each(valid_points, function(i, v){ %>
+          <option value="<%= v %>"<% if (element.hours == v){%> selected="selected" <%}%>><%= v %></option>
+        <% }); %>
+      </select>
+    </p>
+
+  <p>
+    <label for="element_description">Description:</label>
+    <br/>
+    <textarea rows="4" name="element[description]"
+              id="element_description" cols="40"><%= element.description %></textarea>
+  </p>
+  <div class="fields">
+    <label for="element_tags">Tags:</label>
+    <input type="text" size="30" name="element[tag_list]"
+           id="element_tag_list" value="<%= element.tag_list %>" />
+  </div>
+  <p>
+    <a onclick="javascript:$('#users_<%=id%>').toggle('slow');"
+       href="javascript:void(0);">Assign Users</a>
+  </p>
+  <div id="users_<%=id%>" class="users_task_edit" style="display:none;" >
+    <b><label for="element_users">Users</label></b>
+    <div id="users_elements">
+      <% 
+        var assigned_ids = element.users && $.map(element.users, function(v, i){
+          return v.id;
+        });
+        $.each(board_users, function(i, v){
+          checked = assigned_ids && $.inArray(v.id, assigned_ids) != -1;
+      %>
+        <p>
+          <input type="checkbox" value="<%=v.id%>" name="element[user_ids][<%=i%>]"
+                 id="element_user_ids_<%=i%>" <% if(checked){%>checked="checked"<%}%> />
+          <label for="element_user_ids_<%=i%>"><%=v.name%></label>
+        </p>
+      <% }); %>
+      <div>
+        <div style="float: left;">Notify:</div>
+        <div style="float: left;">
+          <input type="radio" value="new" name="notify" id="notify_new" checked="checked"/>
+          <label for="notify_new">new</label>
+          <br/>
+          <input type="radio" value="all" name="notify" id="notify_all"/>
+          <label for="notify_all">all</label>
+          <br/>
+          <input type="radio" value="no" name="notify" id="notify_no"/>
+          <label for="notify_no">none</label>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+
+  <div id="editOptionsFooter">
+    <% if(element.id == '0') { %>
+      <div class="editOptionsFooterCreate">
+        <input type="submit" value="Create" onclick="$('#elementLoadingImage').show();"
+               name="commit" id="element_submit" />
+      </div>
+      <div class="editOptionsFooterDone">
+        | <a onclick="$('#story_<%= id%>_new_task').hide();$('#new_element_<%=id%>').hide()[0].reset();"
+             href="#/">I'm done adding</a>
+      </div>
+      <br/>
+    <% } else { %>
+      <label for="element_parked">Parked:</label>
+      <input type="hidden" value="0" name="element[parked]"/>
+      <input type="checkbox" value="1" name="element[parked]"
+             id="element_parked" <% if(element.parked){ %>checked="checked"<% } %> />
+      <div id="editOptionsFooter">
+        <div class="editOptionsFooterUpdate">
+          <input type="submit" value="Update" id="element_submit" name="commit" />
+        </div>
+        <div class="editOptionsFooterCancel">
+          |
+          <a onclick="javascript:app.trigger('task-ui-cancel', {'id':'<%=id%>'});"
+            href="#/">cancel</a>
+          |
+          <a onclick="javascript:app.runRoute('delete', '#/stories/<%=story_id%>/tasks/<%=id%>');"
+            href="#/" >delete</a>
+        </div>
+        <div class="clearTask"/>
+      </div>
+    <% } %>
+  </div>
+ </div>
+</form>

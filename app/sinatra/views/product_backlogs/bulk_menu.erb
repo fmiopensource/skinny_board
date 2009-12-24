@@ -1,0 +1,27 @@
+<div style="top: 100px;" id="bulkMenu">
+  <div id="bulkWrap">
+    <div class="titleBulk">
+      With Selected:
+    </div>
+    <div class="bulkOptionsButton">
+      <a href="#move" onclick="javascript: app.runRoute('put', '#/product_backlogs/<%=board.id%>/board')">Move to Sprint:</a>
+      <select name="sprint" id="move_to_sprint">
+        <% @sprints.each do |sprint| %>
+          <option value="<%= sprint.id %> "><%= sprint.title %> </option>
+        <% end %>
+      </select>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="bulkOptionsButton">
+      <a href="#/" onclick="javascript: app.runRoute('post','#/product_backlogs/<%=board.id%>/board');">
+        Create New Sprint
+      </a>
+      <input type="text" value="Sprint 1" style="text-align: left;" name="new_sprint_name" id="new_sprint_name"/>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="bulkOptionsButton">
+      <a href="#/delete" onclick="javascript: app.runRoute('delete','#/product_backlogs/<%=board.id%>/story');">Delete</a>
+      <a href="/boards">Back</a>
+    </div>
+  </div>
+</div>

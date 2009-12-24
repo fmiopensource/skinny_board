@@ -1,0 +1,64 @@
+<%
+  board_title = h(board['title'])
+  show_page ||= false
+%>
+<div id="board_<%= board.id%>" class="<%= board_class(board)%>">
+<div class="boardLEFT">
+  <div class="title">
+    <p>
+      <% if show_page %>
+        <a href ='javascript:void(0);' onclick ='showHideBoards()'>
+          <img src ='/images/arrowOpen.png' id ='showHideImg' alt ='Click to Open/Close the Board Badge'
+               title ='Click to Open/Close the Board Badge' />
+        </a>&nbsp;
+      <% end %>
+      <a title="<%=board_title%>" class="boardName" href="<%= get_board_link(board)%>">
+        <%=board_title%>
+      </a>
+    </p>
+  </div>
+  <div class="description">
+    <p><%=board_description(board['description'])%></p>
+  </div>
+</div>
+<div class="boardCENTER">
+  <div class="reports">
+    Reports:
+    <div id="burndown_report">
+      <a title="<%=board_title%>" href="#" onclick="javascript: app.runRoute('get', '#/burndown/<%= board.id %>')">Burndown</a>
+    </div>
+  </div>
+</div>
+<div class="boardRIGHT">
+  <div class="storyPointsHours">
+    <span>hours remaining</span>
+    <div id="total_hours_remaining_<%= board.id%>" class="total_hours_remaining">
+      <p><%= hours_points_display(board['hours']) %></p>
+    </div>
+    <span>story points</span>
+    <div id="total_story_points_<%= board.id%>" class="total_story_points">
+      <p><%= hours_points_display(board['story_points']) %></p>
+    </div>
+    <%= partial :"boards/history",
+                 :locals => { :history => board.history, :current_id => board.id, :level => board.level } unless board.history.nil? %>
+  </div>
+  <div class="dates">
+    <p><%=  board_start_end_date(board) %></p>
+  </div>
+</div>
+<div class="boardFOOTER">
+  <div class="editPrioritize">
+    <% if @can_edit %>
+      <a href="/boards/<%= board.id%>/edit">edit</a>|
+      <% if board['level']!=3 %>
+        <a href="/boards/priorities/<%= board.id%>/edit">prioritize</a>|
+      <% end %>
+      <a href="/text_importer/new?id=<%= board.id%>">import text</a>
+    <% end %>
+  </div>
+  <div class="modified">
+    <%= board_last_modified(board) %>
+  </div>
+</div>
+<div id="boardCardFooter"></div>
+</div>

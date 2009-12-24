@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html;charset=UTF-8' http-equiv='content-type' />
+    <meta content='SCRUM, sprint, board, agile, XP, Stories, Tasks, Burndown, Taskboard, Chart, Skinnyboard, skinnyboard.com, backlog, product backlog, ScrumBoard, VirtualScrumBoard' name='keywords' />
+    <meta content='Skinnyboard is web-based software that helps agile project teams collaborate to get work done. It provides project boards of virtual index cards that you use to assign work, track status, and measure performance.' name='description' />
+    <title>
+      Skinnyboard.com – Collaboration for Agile Teams
+      <%= " - #{@page_title}" unless @page_title.blank? %>
+    </title>
+    <link href="/stylesheets/skinnyboard.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/tabs/default/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+<!--    <link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" /> -->
+    <link href="/stylesheets/slide.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+      <%= "var AUTH_TOKEN='#{current_token}';" unless current_token.blank? %>
+      <%= "var LEVEL_STORY=#{LEVEL_STORY};\n
+           var LEVEL_TASK=#{LEVEL_TASK};\n
+           var board_id='#{@board.id}';\n
+           var board_rev='#{@board._rev}';"
+      %>
+    </script>
+    <script type="text/javascript" src="/javascripts/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery_ui/jquery-ui-1.7.2.custom.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery_ui/ui.sortable.js"</script>
+    <script type="text/javascript" src="/javascripts/sammy/sammy.js"></script>
+    <script type="text/javascript" src="/javascripts/application.js"></script>
+    <script type="text/javascript" src="/javascripts/base_boards.js"></script>
+    <script type="text/javascript" src="/javascripts/backlogs.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.example.js"></script>
+    <script type="text/javascript" src="/javascripts/slide.js"></script>
+  </head>
+  <body>
+    <div id='loading' style='display: none;'>
+      <img src='/images/loading.gif' alt="loading" />
+    </div>
+
+    <div id='appBoardWrapper'>
+      
+      <%= partial :_top_panel, :locals => { :show_page => true, :board => @board, :show_filters => false } %>
+      <div id='boardInfoArea'>
+        <div class="clear"></div>
+        <div class="infoAreaText"></div>
+      </div>
+      <div id='flash_notice'><%= flash[:notice] %></div>
+      <div id='flash_error'><%= flash[:error] %></div>
+
+    </div>
+    <div id='appScreenBoardsEdit'>
+      <div id='appBoardPadding'>
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id='footer'>
+      <div id='appfooterWrap'>
+        SkinnyBoard
+      </div>
+    </div>
+  </body>
+</html>

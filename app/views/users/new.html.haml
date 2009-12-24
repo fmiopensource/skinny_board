@@ -1,0 +1,24 @@
+#subCopy
+  %img{ :src => '/images/signup.jpg' }
+#contentAreaMid
+  #signUp
+    .contentDivide
+    - form_tag((@user.invited_code.blank? ? '/users' : "/invites/#{@user.id}"), :multipart => true, :method => @user.invited_code.blank? ? "post" : "put") do
+      = error_messages_for :user
+      %p
+        = hidden_field :user, 'invited_code'
+      %table
+        = render :partial => 'users/form'
+        %tr
+          %td{:style => 'valign: top;'} Password *:
+          %td= password_field :user, :password
+
+        %tr
+          %td{:style => 'valign: top;'} Confirm Password *:
+          %td= password_field :user, :password_confirmation
+
+      %br
+      .contentDivide
+      .clear
+      .buttonLink
+        = submit_tag "Sign up"

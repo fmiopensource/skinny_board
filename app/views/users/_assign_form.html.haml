@@ -1,0 +1,17 @@
+#users_elements
+  - users.each_with_index do |user, index|
+    %p
+      =check_box_tag "element[user_ids][#{index}]", user.id, element.users.include?(user)
+      %label{:for=>"element_user_ids_#{index}"}=h(user.full_name)
+  %div
+    %div{:style =>"float:left;"} Notify:
+    %div{:style =>"float:left;"}
+      =radio_button_tag 'notify', 'new', :checked => true
+      %label{:for=>"notify_new"} new
+      %br
+      =radio_button_tag 'notify', 'all'
+      %label{:for=>"notify_all"} all
+      %br
+      =radio_button_tag 'notify', 'no'
+      %label{:for=>"notify_no"} none
+%div{:style=>"clear:both;"}

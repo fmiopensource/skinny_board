@@ -1,0 +1,80 @@
+justin:
+  id: 1
+  login: justin
+  email: justin@fluidmedia.com
+  crypted_password: 4016ea81a3eb016f723653ce78765d9c5f978b39
+  salt: 35b827dbe16e02c580d701d41a8de5f3891e9576
+  activated_at: 2008-08-12 19:58:44
+  first_name: Justin
+  last_name: Hogeterp
+  company_id: 1
+
+brian:
+  id: 2
+  login: brian
+  email: brian@fluidmedia.com 
+  first_name: Brian
+  last_name: Kierstead
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: dcd7ed542a85cb49d595e57db473a6ac4dd7f8f4
+  salt: 464da0de9012f84c4f8397aa076267c42f1ff371
+
+danny:
+  id: 3
+  login: danny
+  email: danny@fluidmedia.com
+  first_name: Danny
+  last_name: Frade
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: c41bd3ef46fe445d4721368ceb5e659250023764
+  salt: 740ca02e95afe84b3e8eb15482e1a8cc6bd6fa4d
+  avatar_url: http://s3.amazonaws.com/fmi-skinnyboard/avatars/doctor.jpg
+
+chelsea:
+  id: 4
+  login: chelsea
+  first_name: Chelsea
+  last_name: Robb
+  email: chelsea@fluidmedia.com
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: 7ba2fc4f858bf5b15d466de0ce29a980f41e9598
+  salt: d15d6f58016e46cb7afa3fc48e0fde654806e6f5
+  avatar_url: http://s3.amazonaws.com/fmi-skinnyboard/avatars/chelsea.jpg
+
+matt:
+  id: 5
+  login: matt.grande
+  first_name: Matt
+  last_name: Grande
+  email: matt@fluidmedia.com
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: 042a090c3897c8625e040830466c01789526acc2
+  salt: 13cc1fc9c124466c42ef0a78cd5e00925bec93f8
+  avatar_url: http://s3.amazonaws.com/fmi-skinnyboard/avatars/voltron.jpg
+
+josh:
+  id: 6
+  login: josh
+  first_name: Josh
+  email: josh@fluidmedia.com
+  last_name: Thomson
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: d8548de47cf44e2bdb1b71a948df778324774875
+  salt: 91ab77c0281e762e882c79729540cc2c00cc7792
+  avatar_url: http://s3.amazonaws.com/fmi-skinnyboard/avatars/captain_planet.jpg
+
+cristina:
+  id: 7
+  login: cristina
+  email: cristina@fluidmedia.com
+  first_name: Cristina
+  last_name: Calder
+  activated_at: 2008-08-12 19:58:44
+  company_id: 1
+  crypted_password: dd939ec855699046937406065217880d4661db30
+  salt: 17596aa1dd9128070923fd6cb85c1db0bf2ea5e8

@@ -1,0 +1,18 @@
+<dl id="boardsHistory" class="dropdown">
+  <dt><a href="#"><span>Recent Boards</span></a></dt>
+  <dd>
+    <ul>
+      <%  unless session[:boards_viewed].blank? %>
+        <% session[:boards_viewed].each do |tab| %>
+          <li class="historyItem <%= " backlog" unless tab[:type].nil?  %><%= " current" if tab[:id] == params[:id] %>">
+            <a href="/boards/<%=tab[:id]%>"><%=tab[:name]%><span class="value"><%=tab[:id]%></span></a>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="historyItem">
+          No boards viewed recently
+        </li>
+      <% end %>
+    </ul>
+  </dd>
+</dl>

@@ -1,0 +1,23 @@
+<div id="contentWrap">
+  <h2>
+    Create New Board
+  </h2>
+  <div id="contentAreaMid">
+    <h4>
+      Required fields marked with *
+    </h4>
+    <form method="post" id="new_element" class="new_element" action="/boards">
+      <%= partial :"boards/board_form", :locals => { :board => @board, :mode => :new } %>
+      <div class="multiLinks">
+        <div class="buttonLink">
+          <input type="submit" value="Create" name="commit" id="element_submit"/>
+        </div>
+        <div class="buttonLink">
+          <a href="/boards">Back</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="contentClear"></div>
+</div>
+<div id="contentWrapFooter"></div>

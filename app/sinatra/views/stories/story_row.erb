@@ -1,0 +1,66 @@
+<%
+hidden_stories ||= []
+hidden_columns ||= []
+should_hide = hidden_stories.include?(story.id.to_s) unless hidden_stories.nil?
+story["color"] ||= 'yellow'
+story["color"] = story["color"].capitalize
+%>
+<div class="tableRow" id="story_<%=story.id%>_tableRow">
+  <div class="tableCellSpan">
+    <div id="hoursDivider" >
+      <a class="storyRowToggle" href="javascript:void(0);">
+        <img src="/images/priorityLink<%=  should_hide ? 'Closed' : ''%>.jpg"
+             id="priorityLink_<%=story.id%>" alt="Toggle Display"/>
+      </a>
+      <div class="positionSpan">
+        <%=  story.position.nil? ? 1 : story.position %>
+      </div>
+      <div class="pointsSpan">
+        POINTS
+      </div>
+      <div id="story_<%=story.id%>_points" class="points">
+        <%= hours_points_display(story.story_points) %>
+      </div>
+      <div class="hoursSpan">
+        HOURS
+      </div>
+      <div id="story_hours_<%=story.id%>" class='hours'>
+        <%= hours_points_display(story.hours) %>
+      </div>
+    </div>
+  </div>
+  <div class="story tableRow" id="story_<%=story.id%>_row" style="overflow: visible; <%= should_hide ? 'display:none;' : ''%>">
+    <div class="tableCell" style="">
+     <% if @can_edit %>
+      <div id="story_<%=story.id%>_edit" class="element indexcard<%= story.color%>" style="display:none;"></div>
+     <% end %>
+      <div id="story_<%=story.id%>_display">
+        <%= partial :"stories/story", :locals => { :story => story } %>
+      </div>
+      <div class="cardFooter"></div>
+    </div>
+    <%
+    BOARD_STATII.each do |status|
+      should_hide_status = hidden_columns.include?(status.to_s) unless hidden_columns.nil?
+    %>
+      <div class="tableCell <%=status%>" style="<%= should_hide_status ? 'display:none;' : ''%>">
+        <% if @can_edit && status == STATUS_TODO %>
+          <div class="addTask">
+            <a href="#/stories/<%=story.id%>/tasks/new">
+              <img border="0" alt="Add Task" src="/images/addTask.jpg"/></a>
+            <div id="story_<%=story.id%>_new_task" style='display: none;'></div>
+          </div>
+        <% end %>
+        <div id="story_<%=story.id%>_<%=status%>_move_to" class="droppable">
+          <div id="story_<%=story.id%>_<%=status%>">
+            <% story.tasks.select{|t| t.status_id == status}.each do |task| %>
+              <%= partial :"stories/task", :locals => { :task => task, :status => status } %>
+            <% end unless story.tasks.nil? %>
+          </div>
+          <br/>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="tableRow"></div>
+</div>

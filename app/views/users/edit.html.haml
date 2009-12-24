@@ -1,0 +1,32 @@
+#contentWrap
+  %h2= @user == current_user ? "Edit your profile" : "Edit profile for #{@user.login}"
+  .avatarEdit
+    %img{:src => @user.avatar, :alt=> @user.full_name,  :height => '50', :width => '50'}
+
+  #contentAreaMid
+    
+    %br
+    - form_for(@user, :html => {:multipart => true}) do |f|
+      = f.error_messages
+
+      %table
+        = render :partial => 'form', :locals => {:f => f}
+        - if @user == current_user
+          %tr
+            %td{:colspan => '2'}
+
+              Leave these blank unless you want to change your password
+          %tr
+            %td{:style => 'valign: top;'} Password:
+            %td= password_field :user, :password
+
+          %tr
+            %td{:style => 'valign: top;'} Confirm Password:
+            %td= password_field :user, :password_confirmation
+      .contentDivide
+      .multiLinks
+        .buttonLink
+          = f.submit "Save Changes"
+          = link_to 'delete', @user, :method => :delete, :confirm => "Are you sure?" unless @user.id == @user.company.owner_id
+      #contentClear
+#contentWrapFooter

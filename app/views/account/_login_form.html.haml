@@ -1,0 +1,15 @@
+- form_tag('/login', :url => '/account/login') do
+  %table
+    %tr
+      %td Login:
+      %td= text_field_tag 'login'
+      %td Password:
+      %td= password_field_tag 'password'
+      %td{:colspan => '2'}
+  =check_box_tag 'remember_me', true, false, :style=>"width: 13px;"
+  Remember me  |  
+  =link_to "Forgot your password?", :controller => "account", :action => "forgot_password" 
+  .buttonLink
+    = submit_tag "Go"#,  :class=> 'basecampLoading'
+  
+    

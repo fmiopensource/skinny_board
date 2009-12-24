@@ -1,0 +1,11 @@
+active:
+  id: 1
+  name: Active
+
+canceled:
+  id: 2
+  name: Canceled
+
+suspended:
+  id: 3
+  name: Suspended

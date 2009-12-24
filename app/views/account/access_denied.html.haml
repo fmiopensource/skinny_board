@@ -1,0 +1,19 @@
+-if logged_in?
+  %h4 Access denied
+  - if current_user.company.company_status_id == COMPANY_STATUS_CANCELED
+    It looks like your account has been canceled.  
+    - if current_user.id == current_user.company.owner_id
+      Click a link that will go here to start paying us again
+    -else
+      Please contact the account holder to reactive the account.
+  -elsif current_user.subdomain != params[:subdomain]
+    You do not have access to that domain.
+  - else
+    Your account has been suspended.  Please contact us if there has been a mistake.
+    - if current_user.id == current_user.company.owner_id
+      Click here to review your company info
+  %br
+  =link_to "log out", account_logout_path
+-else
+  %h4 You must be logged in to view that page
+  =render :partial => 'login_form'

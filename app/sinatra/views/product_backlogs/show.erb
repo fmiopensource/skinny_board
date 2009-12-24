@@ -1,0 +1,42 @@
+<div id="burndown_dialog" style="display:none;">
+  <% unless @board.burndown_image_path.blank? %>
+    <img id="burndown" src="<%= @board.burndown_image_path %>" alt="Burndown" />
+  <% end %>
+</div>
+
+<h2>Prioritize</h2>
+
+<div id="contentAreaMid">
+  <div id="parkedBoard" style="display: <%= @board.parked ? 'visible;' : 'none;' %>">
+  </div>
+  <h3>Drag and drop items to re-prioritize your backlog.</h3>
+  
+  <div id="wrapperPrioritze">
+    <div style="clear: both; padding: 10px 0px 0px 10px;">
+      <a href="#/stories/new" ><img border="0" src="/images/addStory.jpg" alt="Add Story"/></a>
+    </div>
+    <div id="story_new" style="display:none;"></div>
+    <div id="board_<%= @board.id%>">
+      <div class="title">
+        <p>
+          <a href='javascript:void(0);' onclick="showHideBoardStories(<%=@board.id %>, true)">
+            <img src="/images/arrowOpen.png" class="showHideImg" alt="Click to Open/Close the Board Badge" title="Click to Open/Close the Board Badge" />
+          </a>
+          <a href="#" class="boardName"><%= "#{@board.title[0..45]}#{@board.title.length>45 ? '...' : ''}" %></a>
+        </p>
+      </div>
+      <div id="backlog_stories">
+        <%= partial :"product_backlogs/sortable_stories", :locals=>{:board => @board, :bulk => true} %>
+      </div>
+      <div id='boards_containers'>
+        <% unless @sprints.blank? %>
+          <% @sprints.each do |board| %>
+            <%= partial :"product_backlogs/sprint", :locals => {:board => board, :bulk => false} %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class='buttonLink'></div>
+      <%= partial :"product_backlogs/bulk_menu", :locals => {:board => @board, :sprints => @sprints, :is_product_backlog => true} %>
+    </div>
+  </div>
+</div>

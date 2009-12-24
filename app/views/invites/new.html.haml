@@ -1,0 +1,29 @@
+#contentWrap
+  %h2 Invite a new User to Your Company
+
+  #contentAreaMid
+
+    - form_for(@user, :url => {:controller => 'invites'}, :html => {:multipart => true}) do |f|
+      %table
+        %tr
+          %td First Name:
+          %td=f.text_field 'first_name'
+        %tr
+          %td Last Name:
+          %td=f.text_field 'last_name'
+        %tr
+          %td{:valign => 'top'} Email Address:
+          %td
+            %span{:class =>"#{@user.errors.on(:email).blank? ? "" : "errors"}"}
+              = f.text_field 'email'
+            -unless @user.errors.blank?
+              #div{:style => "color:#FF0000;"}
+                -if @user.errors.on(:email).is_a?(Array)
+                  =@user.errors.on(:email).join("<br/>")
+                -else
+                  =@user.errors.on(:email)
+      %br
+      .contentDivide
+      .buttonLink
+        = f.submit "Invite User"
+#contentWrapFooter

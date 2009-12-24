@@ -1,0 +1,66 @@
+<form action="<%=action%>" method="<%=method%>" id="new_element_<%=id%>" class="new_element" >
+  <div style="display: none;" id="elementLoadingImage">
+    <img height="25" width="25" src="/images/loading.gif" alt="Loading"/>
+  </div>
+  <input type="hidden" name="element[position]" id="element_position" value="<%= element.position %>" />
+  <div id="editForm">
+    <div class="clearTask"></div>
+    <p>
+      <label for="element_story_points">Story Points:</label>
+      <select name="element[story_points]" id="element_story_points">
+        <% $.each(valid_points, function(i, v){ %>
+          <option value="<%= v %>"<% if (element.story_points == v){%> selected="selected" <%}%>><%= v %></option>
+        <% }); %>
+      </select>
+    </p>
+    <div class="fields">
+      <label for="element_title">Title</label>
+      <br/>
+      <input type="text" size="30" name="element[title]"
+             id="element_title" value="<%= element.title %>"/>
+    </div>
+  <p>
+    <label for="element_description">Description:</label>
+    <br/>
+    <textarea rows="4" name="element[description]"
+              id="element_description" cols="40"><%= element.description %></textarea>
+  </p>
+  <div class="fields">
+    <label for="element_tags">Tags:</label>
+    <input type="text" size="30" name="element[tag_list]"
+           id="element_tag_list" value="<%= element.tag_list %>" />
+  </div>
+  <div id="editOptionsFooter">
+    <% if(element.id == '0') { %>
+      <div class="editOptionsFooterCreate">
+        <input type="submit" value="Create" onclick="$('#elementLoadingImage').show();"
+               name="commit" id="element_submit" />
+      </div>
+      <div class="editOptionsFooterDone">
+        | <a onclick="$('#story_new').hide();$('#new_element_<%=id%>')[0].reset();"
+             href="#/">I'm done adding</a>
+      </div>
+      <br/>
+    <% } else { %>
+      <label for="element_parked">Parked:</label>
+      <input type="hidden" value="0" name="element[parked]"/>
+      <input type="checkbox" value="1" name="element[parked]"
+             id="element_parked" <% if(element.parked){ %>checked<% } %> />
+      <div id="editOptionsFooter">
+        <div class="editOptionsFooterUpdate">
+          <input type="submit" value="Update" id="element_submit" name="commit" />
+        </div>
+        <div class="editOptionsFooterCancel">
+          |
+          <a onclick="javascript:app.trigger('story-ui-cancel', {'id': '<%= id %>'});"
+             href="#/">Cancel</a>
+          |
+          <a onclick="javascript:app.runRoute('delete', '#/stories/<%= id %>');"
+            href="#/" >delete</a>
+        </div>
+        <div class="clearTask"/>
+      </div>
+    <% } %>
+  </div>
+ </div>
+</form>

@@ -1,0 +1,53 @@
+<div id="element_<%=id%>_move" class="draggable">
+  <div id="task_revisions_<%=id%>"></div>
+  <div id="element_<%=id%>_edit" class="element indexcard<%=color%>" style="display:none;"></div>
+  <div id="element_<%=id%>" class="indexcard<%=color%>">
+
+  <div class="clearTask">
+    <div class="hoursRemaining"><%=hours%> hour<%  if(hours!=1) {%>s<%} %></div>
+    <div class="moveTask">
+      <img alt="Move" id="move_<%=id%>" src="/images/move.gif"
+           style="padding-right: 10px;" />
+    </div>
+    <div id="deleteTask">
+      <a href="#" onclick="javascript:app.runRoute('get', '#/stories/<%=parent_id%>/tasks/<%=id%>/edit');">edit</a> |
+      <a href="#/task/<%= change_doc_id%>/history">history</a>
+    </div>
+  </div>
+  <div class="indexcardContent <%=status_id%>">
+    <div id="avatar">
+      <%
+        if( users && users.length > 0 ){
+          var assigned_list = $.map(users, function(v, i){
+            return v.name;
+          });
+          var img_src = users.length > 1 ?
+            '/images/multi_user_avatar.gif' :
+            users[0].avatar_url;
+      %>
+        <img src="<%=img_src%>" title="<%=assigned_list%>" alt="<%=assigned_list%>"
+             height='25' width='25' id="avatar_<%=id%>" />
+        <p style='display:none'><%=assigned_list%></p>
+      <% } %>
+    </div><p>
+    <%= description %>
+      </p>
+    <% if(typeof tag_list != 'undefined' && tag_list != ''){%>
+      <p class="tags">Tags: <%=tag_list%></p>
+    <% } %>
+  </div>
+  <div id="moveBTNs">
+    <small>
+        <% if(status_id > 1){ %>
+          <a onclick="javascript:app.runRoute('put', '#/stories/<%=parent_id%>/tasks/<%=id%>',
+             {'element[status_id]': <%= status_id - 1 %> })" href="#/">←</a>
+        <% }
+          if(status_id < 4){ %>
+          <a onclick="javascript:app.runRoute('put', '#/stories/<%=parent_id%>/tasks/<%=id%>',
+             {'element[status_id]': <%= status_id + 1 %> })" href="#/">→</a>
+        <% } %>
+      </small>
+  </div>
+ </div>
+ <div class="cardFooter"></div>
+</div>

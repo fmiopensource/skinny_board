@@ -1,0 +1,11 @@
+.user
+  %div{:style =>"margin-left: auto; margin-right: auto;text-align: center"}
+    =image_tag(user.avatar)
+  %p{:style =>"text-align: center", :id => "userLink"}
+    =h(user.full_name)
+    =" (#{ link_to 'edit', edit_user_path(user)})" if is_owner && user.login || user.id == current_user.id && user.login
+    %br
+    =user.email
+    - if user.is_invited?
+      %br
+      %i Waiting on user to register

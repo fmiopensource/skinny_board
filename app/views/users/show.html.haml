@@ -1,0 +1,22 @@
+%h2=@user.login
+#contentAreaTop
+#contentAreaMid
+
+  %p
+    Name: 
+    = @user.full_name
+  %p
+    Email:
+    = @user.email
+  %p 
+
+  %p
+    =image_tag(@user.avatar)
+
+  %p
+    = link_to 'View all users in company', :action => 'index'
+    - if current_user.is_a?(User) and (@user.id == current_user.id or current_user.id == current_user.company.owner_id)
+      = link_to 'Edit', edit_user_path(@user)
+#contentAreaBtm
+
+

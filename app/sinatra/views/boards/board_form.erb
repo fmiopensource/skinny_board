@@ -1,0 +1,78 @@
+<div style="margin: 0pt; padding: 0pt;">
+  <input type="hidden" value="<%=current_token%>" name="authenticity_token"/>
+</div>
+<%= board_type_helper(board.level) if mode == :new %>
+<p>
+  <label for="element_title">Title *</label>
+  <br/>
+  <input type="text" size="30" name="element[title]" id="element_title" value="<%=board.title%>"/>
+</p>
+<p>
+  <label for="element_description">Description</label>
+  <br/>
+  <textarea rows="4" name="element[description]" id="element_description" cols="40"><%=board.description%></textarea>
+</p>
+<p>
+  <label for="element_start_date">Start date</label>
+  <br/>
+  <input type="text" size="30" readonly="readonly" name="element[start_date]" id="element_start_date"/>
+</p>
+<p>
+  <label for="element_end_date">Expected end date</label>
+  <br/>
+  <input type="text" size="30" readonly="readonly" name="element[end_date]" id="element_end_date"/>
+</p>
+<p>
+  <input type="hidden" value="0" name="element[is_public]"/>
+  <input type="checkbox" value="1" name="element[is_public]" id="element_is_public"
+         <%='checked="checked"' if board.is_public %> />
+  <label for="element_is_public">Let people who aren't logged in see this board (They won't be able to make any changes to it)</label>
+</p>
+<br/>
+<div class="contentDivide"></div>
+<br/>
+<img src="/images/tweet.jpg" alt="twitter"/>
+
+<a href="javascript:void(0);" id="tweet_toggle" class="tweet">Tweet?</a>
+<br/>
+<div <%= !board.twitter.nil? && board.twitter.tweet ? '' : 'style="display: none;"' %> id="config_twitter">
+  You need an existing Twitter account.  Sign up for one <a target="_blank" href="http://twitter.com/signup">here</a>.
+  <br/>
+  <input type="hidden" value="0" name="twitter[tweet]"/>
+  <input type="checkbox" value="1" name="twitter[tweet]" id="twitter[tweet]"
+         <%='checked="checked"' if !board.twitter.nil? && board.twitter.tweet %> />
+  <label for="tweet">Track updates with twitter</label>
+  <br/>
+  <br/>
+  Twitter Username:
+  <input type="text" size="30" name="twitter[username]" id="twitter_info_username"
+         value="<%=board.twitter.nil? ? '' : board.twitter.username%>" />
+  <br/>
+  Twitter Password:
+  <input type="password" size="30" name="twitter[password]" id="twitter_info_password"
+         value="<%=board.twitter.nil? ? '' : board.twitter.password%>" />
+  <br/>
+</div>
+<br/>
+<div class="contentDivide"></div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    dpOptions = {
+      showButtonPanel: true,
+      showOn: 'button',
+      buttonImageOnly: true,
+      buttonImage: '/images/calendar_date_select/calendar.gif',
+      dateFormat: 'yy/mm/dd'
+    }
+
+    $('#element_start_date').datepicker(dpOptions).datepicker('setDate', <%=
+      @board.start_date.blank? ? "'+0'" : "new Date('#{@board.start_date}')" %>);
+
+    $('#element_end_date').datepicker(dpOptions).datepicker('setDate', <%=
+      @board.end_date.blank? ? "'+14'" : "new Date('#{@board.end_date}')" %>);
+
+    $('#tweet_toggle').click(function(){
+      $('#config_twitter').toggle('slide');
+    });
+  });
+</script>

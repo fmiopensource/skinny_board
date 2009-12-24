@@ -1,0 +1,38 @@
+%tr
+  %td{:style => 'valign: top;'} User Name *:
+  %td=text_field :user, 'login'
+
+%tr
+  %td{:style => 'valign: top;'} First Name *:
+  %td=text_field :user, 'first_name'
+
+%tr 
+  %td{:style => 'valign: top;'} Last Name *:
+  %td= text_field :user, :last_name
+
+%tr
+  %td{:style => 'valign: top;'} Email Address *:
+  %td= text_field :user, :email
+%tr
+  %td{:colspan=>'2'}
+    .contentDivide
+%tr{:class => 'not_for_free'}
+  %td{:style => 'valign: top;'} Avatar:
+  %td 
+    =file_field_tag "user_avatar", :accept => ["image/jpg", "image/gif", "image/png"]
+    - unless @user.id.blank?  
+      %br
+      = check_box_tag :remove_image, "checked", false
+      %label{:for => "remove_image"} Remove avatar
+%tr{:class => 'not_for_free'}
+  %td{:colspan=>'2'}
+    .contentDivide
+%tr{:class => 'not_for_free'}
+  %td{:style => 'valign: top;'} Twitter Login:
+  %td= text_field :user, :twitter_login
+%tr{:class => 'not_for_free'}
+  %td{:style => 'valign: top;'} Twitter password:
+  %td= password_field :user, :twitter_password
+%tr{:class => 'not_for_free'}
+  %td{:colspan=>'2'}
+    .contentDivide

@@ -1,0 +1,34 @@
+ <div id="story_<%=story.id%>" class="storyBadge">
+  <div id="story_<%=story.id%>_display">
+    <div class="boardLEFT">
+      <div class="title">
+        <!-- - if show_page -->
+        <a onclick="showHideStory('<%=story.id%>');" href="javascript:void(0);">
+          <img title="Click to Open/Close the Story Badge" src="/images/arrowClosed.png" id="showHideImg" alt="Click to Open/Close the Story Badge"/>
+          <span class="storyName"><%=story.title%></span>
+        </a>
+        <img style="right: 2px; position: absolute;" src="/images/move.gif" id="move_<%=story.id%>" alt="Move"/>
+      </div>
+    </div>
+    <div style="display: none;" class="storyDetails">
+      <div class="description">
+        <p><%=story.description%></p>
+      </div>
+      <div class="storyPointsHours">
+        <div class="storyBadgeEdit">
+          <a href="#" onclick="javascript: app.runRoute('get', '#/stories/<%= story.id %>/edit')">Edit</a>
+        </div>
+        <span>hours remaining</span>
+        <div class="total_hours_remaining">
+          <p><%=story.hours%></p>
+        </div>
+        <span>story points</span>
+        <div class="total_story_points">
+          <p><%=story.story_points%></p>
+        </div>
+      </div>
+    </div>
+    <div class="storyFOOTER"/>
+  </div>
+  <div style="display: none;" id="story_<%=story.id%>_edit">  </div>
+</div>

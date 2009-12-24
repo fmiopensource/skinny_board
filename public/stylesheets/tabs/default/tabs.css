@@ -1,0 +1,123 @@
+/*-------------------------------------------------
+TABS
+-------------------------------------------------*/
+
+#scrollable_tabs {    /* the 'container' */
+  width: 654px; height: 58px;            /* size of the viewable area */
+  overflow: hidden; position:relative;    /* necessary to make the whole thing work */
+  padding:0px;   /* aesthetics */
+}
+
+#scrollable_tabs_container {   /* the inner block */
+  width: 1500px; height: 30px;   /* defining the size keeps us from getting squashed */
+  left: 0px; top: 0px;       /* the starting offset - always negative */
+  position:relative;             /* better believe it, you need it */
+}
+
+.tabs {
+  clear: left;
+  padding: 0;
+  height: 58px;
+  padding-left: 30px;
+  background: #FFFFFF url(/images/tabGrad.jpg) repeat-x;
+}
+
+/*.tabs a,
+.tabs a:link,
+.tabs a:visited */
+.container_tab{
+  color: #4c4c4c;
+  text-decoration: none;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+  background: #d4d2d3 url(/images/tabLinkGrad.jpg) repeat-x bottom;
+  font-size: 11px;
+  font-weight: bold;
+  display: block;
+  width: 130px;
+  margin: 27px 0px 0px -1px;
+  padding-top: 2px;
+  height: 27px;
+  float: left;
+  text-align: center;
+}
+
+.container_tab_current {
+  color: #4c4c4c;
+  text-decoration: none;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+  background: #fbfbfb url(/images/tabLinkCurrentGrad.jpg) repeat-x bottom;
+  font-size: 11px;
+  font-weight: bold;
+  position: relative;
+  z-index: 3000;
+  display: block;
+  width: 130px;
+  margin: 17px  0px 0px -1px;
+  padding-top: 5px;
+  height: 35px;
+  float: left;
+  text-align: center;
+}
+
+.container_tab_backlog{
+  color: #4c4c4c;
+  text-decoration: none;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+  background: #FFF url(/images/tabLinkBacklogGrad.jpg) repeat-x bottom;
+  font-size: 11px;
+  font-weight: bold;
+  display: block;
+  width: 130px;
+  margin: 27px 0px 0px -1px;
+  padding-top: 2px;
+  height: 27px;
+  float: left;
+  text-align: center;
+}
+
+.container_tab_current a
+{
+ width: 120px;
+  display: block;
+  color: #4c4c4c;
+  padding-top: 2px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.container_tab_backlog a
+{
+  width: 120px;
+  display: block;
+  color: #4c4c4c;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.container_tab a
+{
+  width: 120px;
+  display: block;
+  color: #4c4c4c;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.tabClose
+{
+float: left; margin: 6px 6px 0px 12px;
+}
+
+a.tabClose
+{
+width: 14px;
+}

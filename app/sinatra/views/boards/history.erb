@@ -1,0 +1,7 @@
+<!-- needs js -->
+<div id="board_history">
+  <select name="history" id="history" 
+    onchange="window.location='<%= board_or_product_backlog_url((level rescue nil))%>' + $('#history')[0].value;">
+    <%= options_for_history( history, current_id ) %>
+  </select>  
+</div>

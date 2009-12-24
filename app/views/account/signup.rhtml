@@ -1,0 +1,23 @@
+<%= error_messages_for :user %>
+<% form_for :user do |f| -%>
+
+<p><label for="first_name">First Name</label><br/>
+<%= f.text_field :first_name %></p>
+
+<p><label for="last_name">Last Name</label><br/>
+<%= f.text_field :last_name %></p>
+
+<p><label for="login">Login</label><br/>
+<%= f.text_field :login %></p>
+
+<p><label for="email">Email</label><br/>
+<%= f.text_field :email %></p>
+
+<p><label for="password">Password</label><br/>
+<%= f.password_field :password %></p>
+
+<p><label for="password_confirmation">Confirm Password</label><br/>
+<%= f.password_field :password_confirmation %></p>
+
+<div class="buttonLink"><%= submit_tag 'Sign up' %></div>
+<% end -%>

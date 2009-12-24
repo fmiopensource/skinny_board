@@ -1,0 +1,15 @@
+<div id="element_<%= id %>" class="indexcard<%= color %>">
+  <p class="storyTitle" style="height: auto;">
+    <%= title %>
+  </p>
+  <div id="deleteTask">
+    <a href="#" onclick='app.runRoute("get", "#/stories/<%=id%>/edit");'>edit</a>
+  </div>
+  <div style="clear: both"></div>
+  <div class="indexcardContent">
+    <div class="fields">
+      <p><%= description %></p>
+    </div>
+  </div>
+  <small><%= tag_list %></small>
+</div>

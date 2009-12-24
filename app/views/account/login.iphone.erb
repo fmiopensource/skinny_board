@@ -1,0 +1,18 @@
+<%form_tag({},{:class => 'panel',  :selected => 'true', :target => '_self'}) do%>
+  <fieldset>
+    <h2>Login</h2>
+    <div class="row">
+      <label>Username</label>
+      <input type="text" name="login" value="" size="10" id="login" />
+     </div>
+    <div class="row">
+      <label>Password</label>
+      <input type="password" name="password" value="" size="10" id="password" />
+     </div>
+     <div class="row">
+      <label>Remember Me?</label>
+      <input type="checkbox" name="remember_me" id="remember_me"  value="1"/>
+     </div>
+  </fieldset>
+  <input type="submit" value="Go" class="blueButton"/> 
+<%end%>

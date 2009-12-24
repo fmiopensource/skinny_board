@@ -1,0 +1,20 @@
+<%
+  story["color"] ||= 'yellow'
+%>
+<div id="element_<%=story.id%>" class="indexcard<%=story.color.capitalize%>">
+  <p class="storyTitle" style="height: auto;">
+    <%= h(story.title) unless story.title.blank? %>
+  </p>
+  <div id="deleteTask">
+   <% if @can_edit %>
+     <a href="#" onclick='app.runRoute("get", "#/boards/<%=story.board_id%>/stories/<%=story.id%>/edit");'>edit</a>
+   <% end %>
+  </div>
+  <div style="clear: both"></div>
+  <div class="indexcardContent">
+    <div class="fields">
+      <%= textilize(h(story.description)) %>
+    </div>
+  </div>
+  <%= story_tag_list(story.tag_list) %>
+</div>

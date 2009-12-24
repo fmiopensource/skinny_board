@@ -1,0 +1,28 @@
+<div id='tabs'>
+  <% if (boards_viewed || []).length > MAX_TABS %>
+    <a id="left_scroll"><img src="/images/arrowleft.gif" id="left_scroll_img"/></a>
+    <a id="right_scroll"><img src="/images/arrowright.gif" id="right_scroll_img"/></a>
+  <% end %>
+  <ul class="tabs">
+    <div id="container_" class="container_tab">
+      <%=  board_tabs_new_or_all %>
+    </div>
+
+    <div id='scrollable_tabs'>
+      <div id='scrollable_tabs_container'>
+        <% boards_viewed.each do |tab| %>
+          <div id="container_tab_board_<%=tab[:id]%>" class="container_tab<%= "_current" if tab[:id] == params[:id] %>">
+            <a class="tabClose" href="#" onclick="javascript:app.trigger('tab-close', {id:<%=tab[:id]%>});">
+              <img alt="Close" src="/images/close.gif" />
+            </a>
+            <a href="/boards/<%=tab[:id]%>"
+               class="boardTab<%= " backlog" unless tab[:type].nil?  %><%= " current" if tab[:id] == params[:id] %>"
+               id="tab_board_<%=tab[:id]%>">
+                 <%=tab[:name]%>
+            </a>
+          </div>
+        <% end unless session[:boards_viewed].nil? %>
+      </div>
+    </div>
+  </ul>
+</div>

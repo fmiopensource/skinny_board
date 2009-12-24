@@ -1,0 +1,77 @@
+<div class="tableRow" id="story_<%= id %>_tableRow">
+  <div class="tableCellSpan">
+    <div id="hoursDivider" >
+      <a class="storyRowToggle" href="javascript:void(0);">
+        <img src="/images/priorityLink.jpg" id="priorityLink_<%= id %>" alt="Toggle Display" />
+      </a>
+      <div class="positionSpan">
+        <%= position %>
+      </div>
+      <div class="pointsSpan">
+        POINTS
+      </div>
+      <div id="story_<%= id %>_points" class="points">
+        <%= story_points %>
+      </div>
+      <div class="hoursSpan">
+        HOURS
+      </div>
+      <div id="story_hours_<%= id %>" class='hours'>
+        <%= hours %>
+      </div>
+    </div>
+  </div>
+  <div class="story tableRow" id="story_<%= id %>_row" class="story" style="overflow: visible;">
+    <div class="tableCell" style="">
+      <div id="story_<%= id %>_edit" class="element indexcard<%= color %>" style="display:none;"></div>
+      <div id="story_<%= id %>_display">
+        <div id="element_<%= id %>" class="indexcard<%= color %>">
+          <p class="storyTitle" style="height: auto;">
+            <%= title %>
+          </p>
+          <div id="deleteTask">
+            <a href="#/stories/<%= id %>/edit">edit</a>
+          </div>
+          <div style="clear: both"></div>
+          <div class="indexcardContent">
+            <div class="fields">
+              <p><%= description %></p>
+            </div>
+          </div>
+          <%= tag_list %>
+        </div>
+      </div>
+      <div class="cardFooter"></div>
+    </div>
+    <div style="" class="tableCell 1">
+      <div class="addTask">
+        <a href="#/stories/<%=id%>/tasks/new">
+          <img border="0" alt="Add Task" src="/images/addTask.jpg"/></a>
+        <div style="display: none;" id="story_<%= id %>_new_task"></div>
+      </div>
+      <div id="story_<%= id %>_1_move_to" style="position: relative;">
+        <div id="story_<%= id %>_1"></div>
+        <br/>
+      </div>
+    </div>
+    <div style="" class="tableCell 2">
+      <div id="story_<%= id %>_2_move_to" style="position: relative;">
+        <div id="story_<%= id %>_2"></div>
+        <br/>
+      </div>
+    </div>
+    <div style="" class="tableCell 3">
+      <div id="story_<%= id %>_3_move_to" style="position: relative;">
+        <div id="story_<%= id %>_3"></div>
+        <br/>
+      </div>
+    </div>
+    <div style="" class="tableCell 4">
+      <div id="story_<%= id %>_4_move_to" style="position: relative;">
+        <div id="story_<%= id %>_4"></div>
+        <br/>
+      </div>
+    </div>
+  </div>
+  <div class="tableRow"></div>
+</div>

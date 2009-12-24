@@ -1,0 +1,24 @@
+<script type="text/javascript">
+  $(function () {
+    setTimeout(goTiny, 3000);
+  })
+</script>
+
+<div id="importScreen">
+  <h2>Import the following stories for <%= h(@board.title) %></h2>
+  <div id="contentAreaTop"></div>
+  <div id="contentAreaMid"> 
+    To mass-import stories, just enter them into this textbox, one per line.
+    <div class="lrgTextArea">
+      <form action="/text_importer/?id=<%= @board.id %>" method="post">
+        <textarea cols="100" id="stories" name="stories" rows="20" ></textarea>
+        <br/>
+        <br/>
+        <div class="submit">
+          <input type="submit" value="Import" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="contentAreaBtm"></div>
+</div>

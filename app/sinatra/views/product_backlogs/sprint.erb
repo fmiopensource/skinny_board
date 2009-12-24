@@ -1,0 +1,40 @@
+<div style="height: 60px;" id="board_<%=board.id%>" class="sprintBadge">
+  <div class="boardLEFT">
+    <div class="title">
+      <p>
+        <a onclick="showHideBoardStories('<%=board.id%>', false)" href="javascript:void(0);">
+          <img title="Click to Open/Close the Board Badge" src="/images/arrowOpen.png"
+               class="showHideImg" alt="Click to Open/Close the Board Badge"/>
+        </a>
+        <a class="boardName" href="/boards/<%=board.id%>"><%=board.title%></a>
+      </p>
+    </div>
+    <div style="display: none;" class="description">
+    </div>
+  </div>
+  <div class="boardCENTER">
+    <div class="reports">
+      <div class="report_text"> </div>
+      <div style="margin-top: -20px; margin-left: -20px;" id="burndown_report">
+        <a title="<%=board.title%>"
+           href="#/burndown/<%=board.id%>">Burndown</a>
+      </div>
+    </div>
+  </div>
+  <div class="boardRIGHT">
+    <div class="storyPointsHours">
+      <span>hours remaining</span>
+      <div id="total_hours_remaining_<%=board.id%>" class="total_hours_remaining">
+        <p><%= hours_points_display(board.hours) %></p>
+      </div>
+      <span>story points</span>
+      <div id="total_story_points_<%=board.id%>" class="total_story_points">
+        <p><%= hours_points_display(board.story_points) %></p>
+      </div>
+    </div>
+    <div style="display: none;" class="dates">
+      <p><%= board.start_date %>  -  <%= board.end_date %></p>
+    </div>
+  </div>
+</div>
+<%= partial :"product_backlogs/sortable_stories", :locals=>{:board => board, :bulk => bulk} %>

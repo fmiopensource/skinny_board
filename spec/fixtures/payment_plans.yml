@@ -1,0 +1,3 @@
+payment_plan_one:
+  id: 1
+  max_boards: 10

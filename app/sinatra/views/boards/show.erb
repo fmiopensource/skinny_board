@@ -1,0 +1,34 @@
+<% @page_title = @board.title %>
+<div id="parkedBoard" style="display: <%= @board.parked ? 'visible;' : 'none;' %>"></div>
+<div id="burndown_dialog" style="display:none;">
+  <% unless @board.burndown_image_path.blank? %>
+    <img id="burndown" src="<%= @board.burndown_image_path %>" alt="Burndown" />
+  <% end %>
+</div>
+<ul id="task_history"></ul>
+<div id="appBoardScreen">
+  <div class="table" id="stories_table">
+
+    <div class="tableRow">
+      <div class="tableCellSpan">
+       <% if @can_edit %>
+        <div style="clear: both; padding: 10px 0px 0px 10px;">
+          <a href="#/stories/new" ><img border="0" src="/images/addStory.jpg" alt="Add Story"/></a>
+        </div>
+        <div id="story_new" style="display: none;"></div>
+       <% end %>
+      </div>
+      <div>
+        <div class="tableRow" id="storiesContainer">
+          <% @board.stories.each do |story| %>
+            <%= partial :"stories/story_row", :locals => {
+              :story => story,
+              :hidden_stories => @hidden_stories,
+              :hidden_columns => @hidden_columns
+            } %>
+          <% end unless @board.stories.empty? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

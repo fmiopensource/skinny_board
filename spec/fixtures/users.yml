@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quentin:
+  first_name: Quentin
+  last_name: McGee
+  login: Quentin
+  company_id: 1
+  crypted_password: 6dec94082a646befe3e70d0ee685e0828dc1aa66
+  salt: 491b243b62fae48091c9a11313f46403a1be0b6d
+  email: quentin@example.com
+  id: 1
+  activation_code:
+  activated_at: <%= DateTime.now %>
+  twitter_login:
+  twitter_password:
+# two:
+#   column: value

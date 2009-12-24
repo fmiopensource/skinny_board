@@ -1,0 +1,18 @@
+#contentWrapWide
+  %h2
+    All users in
+    = current_user.company.blank? ? 'your company' : h(current_user.company.name)
+  #contentAreaMid
+
+    - if @users.length > 0
+      %div{:style => "width: 1200px; margin-left:0px;"}
+        =render :partial => 'user', :collection => @users, :locals => {:is_owner => @company.owner_id == current_user.id}
+      .paginate
+        = will_paginate @users
+    -else
+      %h2 There do not appear to be any users in your company
+    .paginate
+      .contentDivide
+      .buttonLinkWide
+        = link_to "Invite a new user", new_invite_url
+#contentWrapFooterWide

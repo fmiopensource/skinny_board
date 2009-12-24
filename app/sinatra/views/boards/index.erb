@@ -1,0 +1,10 @@
+<div id="burndown_dialog" style="display:none;">
+  <img id="burndown" src="" alt="Burndown" />
+</div>
+<div id="boards">
+  <% unless @boards.blank? %>
+    <%@boards.each do |board|%>
+    <%= partial :"boards/_board", :locals => {:board => board} %>
+    <%end%>
+  <% end %>
+</div>

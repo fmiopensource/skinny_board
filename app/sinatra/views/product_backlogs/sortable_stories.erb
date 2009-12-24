@@ -1,0 +1,22 @@
+<div style="display: block;" id="sortable_elements_<%= board.id %>" class="sortable_elements">
+  <div id="priorities_list">
+    <table cellspacing="2" cellpadding="2" style="padding-left: 20px;">
+      <tbody>
+        <tr id="list_table">
+          <% stories_in_columns=story_columns(board.stories,2) %>
+          <% stories_in_columns[:stories].each_with_index do |col, i| %>
+            <td width="200" valign="top" id="list_cell_<%=i%>">
+              <ol start="<%=i*stories_in_columns[:col_length]+1%>" id="list_<%=i%>_<%=board.id%>" class="sortable">
+                <% col.each do |story| %>
+                  <li id="item_<%=story.id%>" style="position: relative;">
+                    <%= partial :"stories/_mini_story_badge", :locals => {:story => story, :bulk => bulk}  %>
+                  </li>
+                <%end%>
+              </ol>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
